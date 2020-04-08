@@ -32,7 +32,7 @@ all_properties = [property_1, property_2, property_3, property_4, property_5, pr
                   property_8, property_9, property_10, property_11, property_12, property_13, property_14, property_15]
 # might want to make all_properties owned_properties + unowned_properties so prices can be affected by multipliers iirc
 dream_properties = ["Mansion in the Swiss Alps", "Scandanavian Castle", "Condominium Building in Vancouver", "Mansion on a Hawaiian Beach",
-                    "Private Island in the Caribbean", "Giant Residential Yacht", "Private Boeing 747", "Huge Texan Ranch", "AMS Student Nest"]
+                    "Private Island in the Caribbean", "Giant Residential Yacht", "Private Boeing 747", "Huge Texan Ranch", "Nest at UBC"]
 dream_property = ""
 rent = 0
 turn_num = 1
@@ -63,7 +63,7 @@ build_choices = [small_house, medium_house, large_house, giant_house, farm, hote
 
 class Game():
     def __init__(self):
-        print(""" 
+        print(r"""
  /$$$$$$$            /$$                             /$$     /$$                       /$$$$$$$                       /$$$$$$ 
 | $$__  $$          |__/                            | $$    | $$                      | $$__  $$                     /$$__  $$
 | $$  \ $$  /$$$$$$  /$$  /$$$$$$$  /$$$$$$        /$$$$$$  | $$$$$$$   /$$$$$$       | $$  \ $$  /$$$$$$   /$$$$$$ | $$  \__/
@@ -71,81 +71,84 @@ class Game():
 | $$__  $$  /$$$$$$$| $$|  $$$$$$ | $$$$$$$$        | $$    | $$  \ $$| $$$$$$$$      | $$__  $$| $$  \ $$| $$  \ $$| $$_/    
 | $$  \ $$ /$$__  $$| $$ \____  $$| $$_____/        | $$ /$$| $$  | $$| $$_____/      | $$  \ $$| $$  | $$| $$  | $$| $$      
 | $$  | $$|  $$$$$$$| $$ /$$$$$$$/|  $$$$$$$        |  $$$$/| $$  | $$|  $$$$$$$      | $$  | $$|  $$$$$$/|  $$$$$$/| $$      
-|__/  |__/ \_______/|__/|_______/  \_______/         \___/  |__/  |__/ \_______/      |__/  |__/ \______/  \______/ |__/      \n""")
+|__/  |__/ \_______/|__/|_______/  \_______/         \___/  |__/  |__/ \_______/      |__/  |__/ \______/  \______/ |__/      """)
         print("Elevating your business knowledge - a game by Ziven, Derek, Mia, Emilie, and Joanna / Clen")
         self.clear_terminal()
         print("----------")
         self.clear_terminal()
-        path = p.dirname(__file__)
-        path = p.join(path, "config.game")
-        if not p.isfile(path):
-            with open(path, "w+") as x:
-                x.write("""[Player Information]
-PlayerBalance = 500000
-TurnNum = 1
-Rent = 0
-DreamProperty =
-Loan = [False, 0, 0, 0]
-
-[Owned Properties]
-
-[Unowned Properties]
-property_1 = ["Village Square", 1, True, ["Tiny house", 0, 25000, 0], False, 0, 125000, 0]
-property_2 = ["Water Tower Row", 4, True, ["Tiny house", 0, 25000, 0], False, 0, 225000, 0]
-property_3 = ["Mountainview Valley", 3, True, ["Tiny house", 0, 25000, 0], False, 0, 525000, 0]
-property_4 = ["Tropical Paradise", 5, True, ["Tiny house", 0, 25000, 0], False, 0, 15025000, 0]
-property_5 = ["Far Fields", 5, True, ["Tiny house", 0, 25000, 0], False, 0, 225000, 0]
-property_6 = ["Urban Alleyway", 3, True, ["Tiny house", 0, 25000, 0], False, 0, 625000, 0]
-property_7 = ["City Corner", 1, True, ["Tiny house", 0, 25000, 0], False, 0, 825000, 0]
-property_8 = ["Main Street", 3, True, ["Tiny house", 0, 25000, 0], False, 0, 1025000, 0]
-property_9 = ["Urban Waterfront", 2, True, ["Tiny house", 0, 25000, 0], False, 0, 2025000, 0]
-property_10 = ["Suburban Sprawl", 4, True, ["Tiny house", 0, 25000, 0], False, 0, 1525000, 0]
-property_11 = ["Desert Oasis", 5, True, ["Tiny house", 0, 25000, 0], False, 0, 325000, 0]
-property_12 = ["Beach Boulevard", 2, True, ["Tiny house", 0, 25000, 0], False, 0, 2025000, 0]
-property_13 = ["Sodden Swamp", 1, True, ["Tiny house", 0, 25000, 0], False, 0, 100000, 0]
-property_14 = ["Fairway Greens", 3, True, ["Tiny house", 0, 25000, 0], False, 0, 775000, 0]
-property_15 = ["Erst Isle", 5, True, ["Tiny house", 0, 25000, 0], False, 0, 10025000, 0]
-                """)
-        path = p.dirname(__file__)
-        path = p.join(path, "basis_config.game")
-        if not p.isfile(path):
-            with open(path, "w+") as x:
-                x.write("""[Player Information]
-PlayerBalance = 500000
-TurnNum = 1
-Rent = 0
-DreamProperty =
-Loan = [False, 0, 0, 0]
-
-[Owned Properties]
-
-[Unowned Properties]
-property_1 = ["Village Square", 1, True, ["Tiny house", 0, 25000, 0], False, 0, 125000, 0]
-property_2 = ["Water Tower Row", 4, True, ["Tiny house", 0, 25000, 0], False, 0, 225000, 0]
-property_3 = ["Mountainview Valley", 3, True, ["Tiny house", 0, 25000, 0], False, 0, 525000, 0]
-property_4 = ["Tropical Paradise", 5, True, ["Tiny house", 0, 25000, 0], False, 0, 15025000, 0]
-property_5 = ["Far Fields", 5, True, ["Tiny house", 0, 25000, 0], False, 0, 225000, 0]
-property_6 = ["Urban Alleyway", 3, True, ["Tiny house", 0, 25000, 0], False, 0, 625000, 0]
-property_7 = ["City Corner", 1, True, ["Tiny house", 0, 25000, 0], False, 0, 825000, 0]
-property_8 = ["Main Street", 3, True, ["Tiny house", 0, 25000, 0], False, 0, 1025000, 0]
-property_9 = ["Urban Waterfront", 2, True, ["Tiny house", 0, 25000, 0], False, 0, 2025000, 0]
-property_10 = ["Suburban Sprawl", 4, True, ["Tiny house", 0, 25000, 0], False, 0, 1525000, 0]
-property_11 = ["Desert Oasis", 5, True, ["Tiny house", 0, 25000, 0], False, 0, 325000, 0]
-property_12 = ["Beach Boulevard", 2, True, ["Tiny house", 0, 25000, 0], False, 0, 2025000, 0]
-property_13 = ["Sodden Swamp", 1, True, ["Tiny house", 0, 25000, 0], False, 0, 100000, 0]
-property_14 = ["Fairway Greens", 3, True, ["Tiny house", 0, 25000, 0], False, 0, 775000, 0]
-property_15 = ["Erst Isle", 5, True, ["Tiny house", 0, 25000, 0], False, 0, 10025000, 0]
-                """)
-        init(convert=True)
-        config = ConfigParser()
-        y = input("Would you like to load a past save? y/n ")
-        if "y" in y:
+        try:
             path = p.dirname(__file__)
             path = p.join(path, "config.game")
-        else:
+            if not p.isfile(path):
+                with open(path, "w+") as x:
+                    x.write("""[Player Information]
+PlayerBalance = 500000
+TurnNum = 1
+Rent = 0
+DreamProperty =
+Loan = [False, 0, 0, 0]
+
+[Owned Properties]
+
+[Unowned Properties]
+property_1 = ["Village Square", 1, True, ["Tiny house", 0, 25000, 0], False, 0, 125000, 0]
+property_2 = ["Water Tower Row", 4, True, ["Tiny house", 0, 25000, 0], False, 0, 225000, 0]
+property_3 = ["Mountainview Valley", 3, True, ["Tiny house", 0, 25000, 0], False, 0, 525000, 0]
+property_4 = ["Tropical Paradise", 5, True, ["Tiny house", 0, 25000, 0], False, 0, 15025000, 0]
+property_5 = ["Far Fields", 5, True, ["Tiny house", 0, 25000, 0], False, 0, 225000, 0]
+property_6 = ["Urban Alleyway", 3, True, ["Tiny house", 0, 25000, 0], False, 0, 625000, 0]
+property_7 = ["City Corner", 1, True, ["Tiny house", 0, 25000, 0], False, 0, 825000, 0]
+property_8 = ["Main Street", 3, True, ["Tiny house", 0, 25000, 0], False, 0, 1025000, 0]
+property_9 = ["Urban Waterfront", 2, True, ["Tiny house", 0, 25000, 0], False, 0, 2025000, 0]
+property_10 = ["Suburban Sprawl", 4, True, ["Tiny house", 0, 25000, 0], False, 0, 1525000, 0]
+property_11 = ["Desert Oasis", 5, True, ["Tiny house", 0, 25000, 0], False, 0, 325000, 0]
+property_12 = ["Beach Boulevard", 2, True, ["Tiny house", 0, 25000, 0], False, 0, 2025000, 0]
+property_13 = ["Sodden Swamp", 1, True, ["Tiny house", 0, 25000, 0], False, 0, 100000, 0]
+property_14 = ["Fairway Greens", 3, True, ["Tiny house", 0, 25000, 0], False, 0, 775000, 0]
+property_15 = ["Erst Isle", 5, True, ["Tiny house", 0, 25000, 0], False, 0, 10025000, 0]
+                    """)
             path = p.dirname(__file__)
             path = p.join(path, "basis_config.game")
-        config.read(path)
+            if not p.isfile(path):
+                with open(path, "w+") as x:
+                    x.write("""[Player Information]
+PlayerBalance = 500000
+TurnNum = 1
+Rent = 0
+DreamProperty =
+Loan = [False, 0, 0, 0]
+
+[Owned Properties]
+
+[Unowned Properties]
+property_1 = ["Village Square", 1, True, ["Tiny house", 0, 25000, 0], False, 0, 125000, 0]
+property_2 = ["Water Tower Row", 4, True, ["Tiny house", 0, 25000, 0], False, 0, 225000, 0]
+property_3 = ["Mountainview Valley", 3, True, ["Tiny house", 0, 25000, 0], False, 0, 525000, 0]
+property_4 = ["Tropical Paradise", 5, True, ["Tiny house", 0, 25000, 0], False, 0, 15025000, 0]
+property_5 = ["Far Fields", 5, True, ["Tiny house", 0, 25000, 0], False, 0, 225000, 0]
+property_6 = ["Urban Alleyway", 3, True, ["Tiny house", 0, 25000, 0], False, 0, 625000, 0]
+property_7 = ["City Corner", 1, True, ["Tiny house", 0, 25000, 0], False, 0, 825000, 0]
+property_8 = ["Main Street", 3, True, ["Tiny house", 0, 25000, 0], False, 0, 1025000, 0]
+property_9 = ["Urban Waterfront", 2, True, ["Tiny house", 0, 25000, 0], False, 0, 2025000, 0]
+property_10 = ["Suburban Sprawl", 4, True, ["Tiny house", 0, 25000, 0], False, 0, 1525000, 0]
+property_11 = ["Desert Oasis", 5, True, ["Tiny house", 0, 25000, 0], False, 0, 325000, 0]
+property_12 = ["Beach Boulevard", 2, True, ["Tiny house", 0, 25000, 0], False, 0, 2025000, 0]
+property_13 = ["Sodden Swamp", 1, True, ["Tiny house", 0, 25000, 0], False, 0, 100000, 0]
+property_14 = ["Fairway Greens", 3, True, ["Tiny house", 0, 25000, 0], False, 0, 775000, 0]
+property_15 = ["Erst Isle", 5, True, ["Tiny house", 0, 25000, 0], False, 0, 10025000, 0]
+                    """)
+            init(convert=True)
+            config = ConfigParser()
+            y = input("Would you like to load a past save? y/n ")
+            if "y" in y:
+                path = p.dirname(__file__)
+                path = p.join(path, "config.game")
+            else:
+                path = p.dirname(__file__)
+                path = p.join(path, "basis_config.game")
+            config.read(path)
+        except:
+            print(f"{Fore.RED}There was an error reading or writing - please try again.{Style.RESET_ALL}")
         self.player_balance = int(
             config["Player Information"]["PlayerBalance"])
         self.turn_num = int(config["Player Information"]["TurnNum"])
@@ -177,6 +180,9 @@ property_15 = ["Erst Isle", 5, True, ["Tiny house", 0, 25000, 0], False, 0, 1002
             if player_name.lower().strip() == "transitionite":
                 self.clear_terminal()
                 print(f"{Fore.CYAN}Haha - very funny. If you enjoy our game, please consider donating to the University Transition Program.\nHere's a link: https://support.ubc.ca/projects/university-transition-program/ {Style.RESET_ALL}")
+            if player_name.lower().strip() == "epicgamer":
+                self.clear_terminal()
+                print(f"{Fore.CYAN}I concur! By the way, please consider donating to the University Transition Program.\nHere's a link: https://support.ubc.ca/projects/university-transition-program/ {Style.RESET_ALL}")
             self.clear_terminal()
             print(f"Dear {player_name}, your {choice(relative)} has recently unfortunately died.\nIn the will, they left their remaining savings of $500000 to you. But there's a catch. They want you to become the housing market tycoon they never were.\nYou are to use this money and your regular salary of $10000 to become a housing millionare.\nLearn how to follow the market, flip homes, and save money until you can afford to buy your dream property and retire in style.\nOne last thing before you get started: watch your spending because if you fail to pay your taxes for three turns in a row, you lose.")
             self.clear_terminal()
@@ -305,15 +311,6 @@ property_15 = ["Erst Isle", 5, True, ["Tiny house", 0, 25000, 0], False, 0, 1002
 
         rent = 0
         # The total rent owed to the player is determined.
-        for home in self.owned_properties:
-            if home[7] > 0:
-                rent += home[5]
-                home[7] -= 1
-            elif home[7] == 0:
-                home[5] = 0
-                home[4] = False
-                print(
-                    f"{Fore.YELLOW}You are not renting {home[0]}.{Style.RESET_ALL}")
         if rent > 0:  # If there is any rent from this process, it is paid.
             self.player_balance += rent
             # Player is given information about their financial status.
@@ -334,7 +331,7 @@ property_15 = ["Erst Isle", 5, True, ["Tiny house", 0, 25000, 0], False, 0, 1002
         propTax = propValue * 0.001
         self.player_balance -= propTax
         if propTax > 0:
-            print(f"{Style.BRIGHT}{Fore.RED}You paid {round(propTax, 2)} dollars in property tax.{Style.RESET_ALL}")
+            print(f"{Style.BRIGHT}{Fore.RED}You paid {int(propTax)} dollars in property tax.{Style.RESET_ALL}")
 
         if self.loan[0] == True:
             self.player_balance -= self.loan[2]
@@ -362,7 +359,10 @@ property_15 = ["Erst Isle", 5, True, ["Tiny house", 0, 25000, 0], False, 0, 1002
             if len(self.owned_properties) > 0:
                 self.clear_terminal()
                 print("The properties you currently own and their values: ")
-                self.print_properties(self.owned_properties)
+                for i, x in enumerate(self.owned_properties):
+                    tf = "Yes" if x[4] == True else "No"
+                    if x[3] != "":
+                        print(f"{i + 1}: {x[0]} - {x[3][0]} - Rented? {tf} - ${x[6]} total value")
 
         else:
             print(f"{Style.BRIGHT}{Fore.RED}You have been irresponsible with your spending and gone bankrupt. You lose the game.{Style.RESET_ALL}")
@@ -395,6 +395,7 @@ property_13 = ["Sodden Swamp", 1, True, ["Tiny house", 0, 25000, 0], False, 0, 1
 property_14 = ["Fairway Greens", 3, True, ["Tiny house", 0, 25000, 0], False, 0, 775000, 0]
 property_15 = ["Erst Isle", 5, True, ["Tiny house", 0, 25000, 0], False, 0, 10025000, 0]
                 """)
+            input()
             exit(0)
         if self.player_balance >= 50000000 and self.loan[0] == False:
             self.clear_terminal()
@@ -437,7 +438,8 @@ property_15 = ["Erst Isle", 5, True, ["Tiny house", 0, 25000, 0], False, 0, 1002
                     "Well, that's too bad - your agent has already bought it! Congrats!\n")
             print(f"{Fore.CYAN}We hope you've learned about the real estate market, and had fun playing!\n- Ziven, Derek, Mia, Emilie & Joanna / Clen{Style.RESET_ALL}")
             self.clear_terminal()
-            print(f"{Fore.YELLOW}Save file reset.{Style.RESET_ALL}")
+            print(f"{Fore.YELLOW}Save file reset. Press ENTER to end the game.{Style.RESET_ALL}")
+            input()
             exit(0)
     def turn_loan(self):  # ZIVEN, MIA
         self.clear_terminal()
@@ -446,7 +448,7 @@ property_15 = ["Erst Isle", 5, True, ["Tiny house", 0, 25000, 0], False, 0, 1002
         try:
             selection = amount_choices.get(input("What amount would you like to borrow? "))
         except:
-            y = input("Invalid input. Would you like to exit? ")
+            y = input("Invalid input. Would you like to go back? ")
             if "y" in y:
                 return
             self.turn_loan()
@@ -458,7 +460,7 @@ property_15 = ["Erst Isle", 5, True, ["Tiny house", 0, 25000, 0], False, 0, 1002
             rselection = rate_and_term_choices.get(
                 input("Which interest rate and duration would you like? "))
         except:
-            y = input("Invalid input. Would you like to exit? ")
+            y = input("Invalid input. Would you like to go back? ")
             if "y" in y:
                 return
             self.turn_loan()
@@ -499,7 +501,7 @@ property_15 = ["Erst Isle", 5, True, ["Tiny house", 0, 25000, 0], False, 0, 1002
                 self.loan[2] = self.loan[1]/self.loan[3]
 
             self.clear_terminal()
-            input(f"You have successfully taken a loan of {loan_amount} dollars. You will be making payments of {self.loan[2]} dollars for the next {self.loan[3]} turns.")
+            input(f"You have successfully taken a loan of {loan_amount} dollars. You will be making payments of {int(self.loan[2])} dollars for the next {self.loan[3]} turns.")
         else:
             return
     # structure: Has the player taken out a loan, what is the loan amount, what is the /turn payment, how many turns left are there for it to be repaid.
@@ -519,7 +521,7 @@ property_15 = ["Erst Isle", 5, True, ["Tiny house", 0, 25000, 0], False, 0, 1002
 
                     input("Success! You have paid off your loan, and you are now debt free!")
         except:  # if input does not match, break
-            y = input("Invalid input. Would you like to exit?")
+            y = input("Invalid input. Would you like to go back?")
             if "y" in y:
                 return
             self.turn_prepay()
@@ -538,7 +540,7 @@ property_15 = ["Erst Isle", 5, True, ["Tiny house", 0, 25000, 0], False, 0, 1002
         try:  # gets input from user as to what to do next
             prop = self.owned_properties[int(input("Which property would you like to work on? ")) - 1]
         except:  # if input does not match, break
-            y = input("Invalid input. Would you like to exit?")
+            y = input("Invalid input. Would you like to go back?")
             if "y" in y:
                 return
             self.turn_modify()
@@ -591,7 +593,7 @@ property_15 = ["Erst Isle", 5, True, ["Tiny house", 0, 25000, 0], False, 0, 1002
             elif y != "y":
                 return
         except:  # if input does not match, restart function
-            y = input("Invalid input. Would you like to exit? y/n")
+            y = input("Invalid input. Would you like to back? y/n")
             if "y" in y:
                 return
             else:
@@ -640,7 +642,7 @@ property_15 = ["Erst Isle", 5, True, ["Tiny house", 0, 25000, 0], False, 0, 1002
                     input("You don't have enough money to demolish this. Save up for another day!")
 
             except:
-                y = input("Invalid input. Would you like to exit? y/n ").lower()
+                y = input("Invalid input. Would you like to go? y/n ").lower()
                 if "y" in y:
                     return
 
@@ -657,10 +659,10 @@ property_15 = ["Erst Isle", 5, True, ["Tiny house", 0, 25000, 0], False, 0, 1002
             print("Remodeling a part of your property will increase its value, but be careful! Remodels cost a lot of money.")
             # A dictionary with different choices for house flipping/improvements as well as costs
 
-            remodel_choices = {"1": ["Repaint", "10000"], "2": ["New floor", "15000"], "3": ["New roof", "20000"], "4": ["New windows", "20000"], "5": ["New garden", "30000"]}
+            remodel_choices = {"1": ["Repaint", "10000", 1.2], "2": ["New floor", "15000", 1.3], "3": ["New roof", "20000", 1.4], "4": ["New windows", "20000", 1.4], "5": ["New garden", "30000", 1.5]}
 
             for key, value in remodel_choices.items():
-                print(str(key) + ': ' + str(value[0]) + ' - ' + str(value[1]))
+                print(str(key) + ': ' + str(value[0]) + ' - ' + str(value[1]) + ' - ' + str(int(round((value[2] - 1) * 100))) + ' percent increase')
 
             try:  # gets input from user as to what to do next
                 selection = remodel_choices.get(input("What would you like to do? "))
@@ -672,7 +674,7 @@ property_15 = ["Erst Isle", 5, True, ["Tiny house", 0, 25000, 0], False, 0, 1002
 
             if self.player_balance >= 10000 and selection not in prop:
                 try:
-                    ans = input(f"Are you sure? Your balance is ${self.player_balance}. y/n ").lower()
+                    ans = input(f"Are you sure? Your balance is ${int(self.player_balance)}. y/n ").lower()
                     if ans == "y":
                         self.clear_terminal()
                         print("Modification made! What a wonderful addition to the property!")
@@ -681,10 +683,9 @@ property_15 = ["Erst Isle", 5, True, ["Tiny house", 0, 25000, 0], False, 0, 1002
                         # removes the cost of the renovation
                         self.player_balance -= int(cost)
                         # increases the value of the property
-                        prop[6] += int(cost)*3
+                        prop[6] *= selection[2]
                         self.clear_terminal()
-                        input(f"Your balance is now {self.player_balance} dollars and the property value is {prop[6]} dollars.")
-
+                        print(f"Your balance is now {int(self.player_balance)} dollars and the property value is {int(prop[6])} dollars.")
                 except:
                     print("Invalid input.")
                     self.turn_remodel(prop)
@@ -764,7 +765,7 @@ property_15 = ["Erst Isle", 5, True, ["Tiny house", 0, 25000, 0], False, 0, 1002
         prop[5] = int(rate)
         prop[7] = int(duration)
         self.clear_terminal()
-        input(f"Great! Now you will be receiving an income of {rate} from this property for the next {duration} turns.")
+        input(f"Great! Now you will be receiving an income of ${rate} from this property for the next {duration} turns.")
 
     def rentGen(self, prop):  # MIA   Helper function of rent, creates random rental rate based on property value
         global rent_rate_list
@@ -803,11 +804,11 @@ property_15 = ["Erst Isle", 5, True, ["Tiny house", 0, 25000, 0], False, 0, 1002
                         # removes from unowned list
                         del self.unowned_properties[num_to_buy - 1]
                         self.clear_terminal()
-                        input(f"Property bought. Your balance is now {round(self.player_balance)} dollars.")
+                        input(f"Property bought. Your balance is now {int(self.player_balance)} dollars.")
                     else:
                         print("You don't have enough money for that. Save up - maybe one day!")
                         self.clear_terminal()
-                        y = input("Would you like to exit?").lower()
+                        y = input("Would you like to go back?").lower()
                         if not y == "y":
                             self.turn_buy()
         except:
